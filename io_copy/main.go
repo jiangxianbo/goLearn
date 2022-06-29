@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// 借助io.copy() 实现一个拷贝文件函数
+// 借助io.copy() 实现一个拷贝文件函数 123
 
 func CopyFile(dstname, srcName string) (written int64, err error) {
 	// 以读的方式打开源文件
