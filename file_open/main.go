@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func readFromFile()  {
+func readFromFile() {
 	// 打开文件
 	fileObj, err := os.Open("./main.go")
 	if err != nil {
@@ -18,7 +18,7 @@ func readFromFile()  {
 	// 读取文件
 	//var tmp = make([]byte, 128)
 	var tmp [128]byte
-	for  {
+	for {
 		n, err := fileObj.Read(tmp[:])
 		if err == io.EOF {
 			fmt.Println("读完了")
@@ -36,7 +36,7 @@ func readFromFile()  {
 }
 
 // bufio读取文件
-func readFromFileByBufio()  {
+func readFromFileByBufio() {
 	// 打开文件
 	fileObj, err := os.Open("./main.go")
 	if err != nil {
@@ -45,7 +45,7 @@ func readFromFileByBufio()  {
 	defer fileObj.Close()
 	// 创建一个从文件中读内容的对象
 	reader := bufio.NewReader(fileObj)
-	for  {
+	for {
 		line, err := reader.ReadString('\n')
 		if err == io.EOF {
 			return
@@ -59,6 +59,6 @@ func readFromFileByBufio()  {
 }
 
 func main() {
-	//readFromFile
-	readFromFileByBufio()
+	readFromFile()
+	//readFromFileByBufio()
 }
