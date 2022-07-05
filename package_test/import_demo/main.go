@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	"learn/package_test/calc"
+	"goLearn/package_test/calc"
 )
 
 func init() {
@@ -11,6 +10,6 @@ func init() {
 }
 
 func main() {
-	ret := calc.Add(12, 22)
+	ret := calc.Add(10, 20)
 	fmt.Println(ret)
 }
