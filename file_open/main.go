@@ -9,7 +9,7 @@ import (
 
 func readFromFile() {
 	// 打开文件
-	fileObj, err := os.Open("./main.go")
+	fileObj, err := os.Open("./mylogger.go")
 	if err != nil {
 		fmt.Printf("open file faild, err:%v", err)
 	}
@@ -38,7 +38,7 @@ func readFromFile() {
 // bufio读取文件
 func readFromFileByBufio() {
 	// 打开文件
-	fileObj, err := os.Open("./main.go")
+	fileObj, err := os.Open("./mylogger.go")
 	if err != nil {
 		fmt.Printf("open file faild, err:%v", err)
 	}

@@ -11,14 +11,14 @@ type person struct {
 func newPerson(name string, age int) person {
 	return person{
 		name: name,
-		age: age,
+		age:  age,
 	}
 }
 
 // 方法
 // 接收者是用对应类型的首字母小写
 // 指定了接受者之后，只有接收者这个类型的变量才能调用这个方法
-func (p *person) dream(str string)  {
+func (p *person) dream(str string) {
 	fmt.Printf("%s的梦想是%s\n", p.name, str)
 }
 
@@ -30,8 +30,8 @@ func (p *person) dream(str string)  {
 // 1.需要改变结构体变量的值时要使用指针接收者
 // 2.结构体本身比较大，拷贝的内存开销比较大时也要使用指针接收者
 // 3.保持一致性：如果有一个方法使用了指针接收者，其他方法统一也是用指针接收者
-func (p *person) guonian()  {
-	p.age ++
+func (p *person) guonian() {
+	p.age++
 }
 
 func main() {
