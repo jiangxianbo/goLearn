@@ -1,7 +1,7 @@
 package main
 
 import (
-	"learn/mylogger"
+	"goLearn/mylogger"
 	"time"
 )
 
