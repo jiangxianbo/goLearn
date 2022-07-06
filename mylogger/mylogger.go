@@ -68,5 +68,6 @@ func getInfo(skip int) (funcName, fileName string, lineNo int) {
 	}
 	funcName = runtime.FuncForPC(pc).Name()
 	fileName = path.Base(file)
+	funcName = strings.Split(funcName, ".")[1]
 	return
 }
