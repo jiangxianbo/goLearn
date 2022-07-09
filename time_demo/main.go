@@ -94,7 +94,7 @@ func f2() {
 	fmt.Println(timeObjSub)
 }
 func main() {
-	//f1()
-	f2()
+	f1()
+	//f2()
 
 }
