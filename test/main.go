@@ -5,17 +5,42 @@ import (
 	"sync"
 )
 
-// 声明全局等待组变量
 var wg sync.WaitGroup
 
-func hello() {
-	fmt.Println("hello")
-	wg.Done() // 告知当前goroutine完成
+var once sync.Once
+
+func f1(ch1 chan int) {
+	defer wg.Done()
+	for i := 0; i < 100; i++ {
+		ch1 <- i
+	}
+	close(ch1)
+}
+
+func f2(ch1, ch2 chan int) {
+	defer wg.Done()
+	for {
+		x, ok := <-ch1
+		if !ok {
+			break
+		}
+		ch2 <- x * x
+	}
+	once.Do(func() {
+		close(ch2)
+	})
 }
 
 func main() {
-	wg.Add(1) // 登记1个goroutine
-	go hello()
-	fmt.Println("你好")
-	wg.Wait() // 阻塞等待登记的goroutine完成
+	a := make(chan int, 100)
+	b := make(chan int, 100)
+	wg.Add(3)
+	go f1(a)
+	go f2(a, b)
+	go f2(a, b)
+	wg.Wait()
+	for ret := range b {
+		fmt.Println(ret)
+	}
+
 }
