@@ -7,12 +7,12 @@ import (
 
 // 往终端写日志相关内容
 
-// Logger 日志结构体
+// ConsoleLogger 日志结构体
 type ConsoleLogger struct {
 	Level LogLevel
 }
 
-// Newlog 构造函数
+// NewLConsoleLog 构造函数
 func NewLConsoleLog(levelStr string) ConsoleLogger {
 	level, err := parseLogLevel(levelStr)
 	if err != nil {
