@@ -9,6 +9,15 @@ import (
 
 // net/http client
 
+// 公用一个client适用 请求比较频繁
+var (
+	client = http.Client{
+		Transport: &http.Transport{
+			DisableKeepAlives: false,
+		},
+	}
+)
+
 func main() {
 	//resp, err := http.Get("http://127.0.0.1:9090/xxx/?name=sb&age=18")
 	//if err != nil {
@@ -23,7 +32,21 @@ func main() {
 	fmt.Println(queryStr)
 	urlObj.RawQuery = queryStr
 	req, err := http.NewRequest("GET", urlObj.String(), nil)
-	resp, err := http.DefaultClient.Do(req)
+	//resp, err := http.DefaultClient.Do(req)
+	//if err != nil {
+	//	fmt.Printf("get url failed, err:%v\n", err)
+	//	return
+	//}
+
+	// 请求不是特别频繁， 用完就关闭
+	// 禁用KeepAlive 的client
+	tr := &http.Transport{
+		DisableKeepAlives: true,
+	}
+	client := http.Client{
+		Transport: tr,
+	}
+	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Printf("get url failed, err:%v\n", err)
 		return
