@@ -6,7 +6,7 @@ import (
 
 // Split 切割字符串
 func Split(str string, sep string) []string {
-	var ret []string
+	var ret []string = make([]string, 0, strings.Count(str, sep)+1)
 	index := strings.Index(str, sep)
 	for index >= 0 {
 		ret = append(ret, str[:index])
@@ -15,4 +15,12 @@ func Split(str string, sep string) []string {
 	}
 	ret = append(ret, str)
 	return ret
+}
+
+// Fib 是一个计算第n个斐波那契数的函数
+func Fib(n int) int {
+	if n < 2 {
+		return n
+	}
+	return Fib(n-1) + Fib(n-2)
 }
