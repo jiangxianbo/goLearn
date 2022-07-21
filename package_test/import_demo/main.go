@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goLearn/package_test/calc"
+	"go_learn/package_test/calc"
 )
 
 func init() {
