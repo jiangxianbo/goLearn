@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goLearn/mylogger"
+	"learn/mylogger"
 )
 
 var log mylogger.Logger // 声明全局接口变量
