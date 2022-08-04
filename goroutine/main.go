@@ -17,7 +17,7 @@ func main() {
 			fmt.Println(i)
 		}(i)
 	}
-	fmt.Println("main")
+	fmt.Println("main3")
 	// main函数结束了 由main函数启动的goroutine也都结束了
 	time.Sleep(time.Second * 1)
 }
