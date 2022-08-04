@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"gopkg.in/ini.v1"
 	"learn/log_transfer/conf"
 	"learn/log_transfer/es"
@@ -17,13 +18,15 @@ func main() {
 	// 0.加载配置文件
 	err := ini.MapTo(cfg, "./conf/cfg.ini")
 	if err != nil {
-		panic(err)
+		fmt.Printf("ini.MapTo failed, err:%v\n", err)
+		return
 	}
 	// 1.初始化es
 	// 1.1 初始化ES链接的一个client
 	err = es.Init(cfg.ESCfg.Address, cfg.ESCfg.ChanSize, cfg.ESCfg.Nums)
 	if err != nil {
-		panic(err)
+		fmt.Printf("es.Init failed, err:%v\n", err)
+		return
 	}
 
 	// 2.初始化kafka
@@ -31,7 +34,8 @@ func main() {
 	// 2.2 每个分区的消费者分别取出数据，通过SendES()将数据发往ES
 	err = kafka.Init([]string{cfg.KafkaCfg.Address}, cfg.KafkaCfg.Topic)
 	if err != nil {
-		panic(err)
+		fmt.Printf("kafka.Init failed, err:%v\n", err)
+		return
 	}
 
 	select {}
